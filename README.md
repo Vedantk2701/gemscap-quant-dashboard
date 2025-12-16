@@ -2,16 +2,16 @@
 
 This project is a real-time **Pairs Trading Quantitative Analytics Dashboard** developed as part of the **Gemscap Quantitative Developer Intern Assignment**.
 
-The application demonstrates a **mean-reversion based pairs trading strategy** using live cryptocurrency market data from the Binance Public API.
+The application demonstrates a **mean-reversion based pairs trading strategy** using live cryptocurrency market data sourced from the **Binance Public REST API**. It showcases real-time data ingestion, aggregation, quantitative analytics, alert generation, and interactive visualization.
 
 ---
 
 ## 🚀 Features
 
-- Live price data for BTCUSDT and ETHUSDT
-- Selection of Y and X trading symbols
-- Real-time **price spread** calculation
-- Rolling mean & standard deviation
+- Live price data ingestion for BTCUSDT and ETHUSDT
+- User-selectable Y and X trading symbols
+- Real-time **price spread** computation
+- Rolling mean & rolling standard deviation
 - **Z-score based mean reversion analysis**
 - BUY / SELL / HOLD trading signals
 - **Mean Reversion Half-Life** estimation
@@ -20,69 +20,68 @@ The application demonstrates a **mean-reversion based pairs trading strategy** u
 - Side-by-side visualization of:
   - Price Spread
   - Z-Score with threshold levels
-- Real-time alerts based on signals
-- CSV download of spread and z-score data
+- Real-time alert generation based on analytics
+- CSV download of aggregated spread and z-score data
+- Optional OHLC CSV upload support
 
 ---
 
-## 📈 Quantitative Logic
+## 📊 Real-Time Data Ingestion & Aggregation
+
+The application continuously ingests real-time market prices from the Binance Public REST API and aggregates them in-memory using Pandas DataFrames.
+
+- Each incoming price tick is timestamped during runtime
+- Data is aggregated using Streamlit session state
+- Rolling-window statistics are computed dynamically
+- Analytics are enabled progressively as sufficient data becomes available
+- No analytics requiring more than **intraday data** are used
+
+This design ensures low-latency processing and real-time responsiveness.
+
+---
+
+## 📈 Quantitative Analytics Methodology
 
 ### Spread Calculation
-Spread = Price(Y) − Price(X)
+
+### Rolling Statistics
+- Rolling Mean computed over a user-defined window
+- Rolling Standard Deviation computed over the same window
 
 ### Z-Score Calculation
-Z-Score = (Spread − Rolling Mean) / Rolling Standard Deviation
 
-### Trading Signals
-Z > +2 → SELL Y / BUY X  
-Z < −2 → BUY Y / SELL X  
-Otherwise → HOLD
+### Trading Signal Logic
+- **Z > +2** → SELL Y / BUY X  
+- **Z < −2** → BUY Y / SELL X  
+- Otherwise → HOLD  
+
+This approach is widely used in quantitative trading systems to identify temporary mispricing between correlated assets.
 
 ---
 
 ## ⏱ Mean Reversion Half-Life
 
-The half-life represents how quickly the spread reverts to its mean.  
-It is calculated using linear regression on lagged spread changes.
+The mean reversion half-life estimates how quickly the spread reverts to its mean.
+
+- Computed using linear regression on lagged spread changes
+- Indicates the speed of convergence toward equilibrium
+- Displayed dynamically once sufficient data is available
 
 ---
 
 ## 🛠 Tech Stack
 
-- Python
-- Streamlit
-- Pandas
-- NumPy
-- Plotly
-- Binance Public REST API
+- **Python**
+- **Streamlit** (Frontend & UI)
+- **Pandas** (Data aggregation & analytics)
+- **NumPy** (Statistical calculations)
+- **Plotly** (Interactive visualizations)
+- **Binance Public REST API** (Market data source)
 
 ---
 
-## ▶ How to Run
+## ▶ How to Run the Application
 
-pip install -r requirements.txt  
+```bash
+pip install -r requirements.txt
 streamlit run app.py
-
----
-
-## 📤 Data Export
-
-The dashboard allows downloading a CSV file containing:
-- Timestamp
-- Price Spread
-- Z-Score
-
----
-
-## ⚠ Disclaimer
-
-This project is created for **educational and evaluation purposes only**.  
-It does not constitute financial or investment advice.
-
----
-
-## 👤 Author
-
-**Vedant Keche**  
-B.Tech – Electronics & Telecommunication Engineering  
-Vishwakarma Institute of Technology, Pune
