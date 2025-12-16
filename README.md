@@ -85,3 +85,19 @@ The mean reversion half-life estimates how quickly the spread reverts to its mea
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
+
+# ChatGPT Usage Transparency
+
+ChatGPT was used as a development assistant during this assignment for:
+
+- Understanding and clarifying assignment requirements
+- Structuring the Streamlit application
+- Implementing quantitative analytics logic
+- Improving UI layout and visualization
+- Writing documentation and README content
+
+All implementation decisions, quantitative logic, and final code
+were reviewed, customized, and validated by the author.
+
+ChatGPT was used strictly as a productivity and learning aid.
+
