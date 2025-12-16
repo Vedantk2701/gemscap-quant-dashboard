@@ -79,13 +79,6 @@ The mean reversion half-life estimates how quickly the spread reverts to its mea
 - **Binance Public REST API** (Market data source)
 
 ---
-
-## ▶ How to Run the Application
-
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-
 # ChatGPT Usage Transparency
 
 ChatGPT was used as a development assistant during this assignment for:
@@ -100,4 +93,15 @@ All implementation decisions, quantitative logic, and final code
 were reviewed, customized, and validated by the author.
 
 ChatGPT was used strictly as a productivity and learning aid.
+
+
+## ▶ How to Run the Application
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+
+
+
+
 
